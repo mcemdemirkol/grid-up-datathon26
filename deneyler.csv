@@ -1,0 +1,61 @@
+tarih,deney,aciklama,oznitelik_seti,harness,toplam,gorulen,cold,notlar
+2026-08-25 17:55,D01-dogal(%8),"v2 oznitelikleri, sifir kurali yok",FEATS(v2),B,0.8411,0.7212,1.7004,"cold_hedef=0.0, iter=178"
+2026-08-25 17:55,D01-dogal(%8)+sifir,v2 + sifir kurali p_zero>=0.95,FEATS(v2),B,0.8372,0.7163,1.7004,"cold_hedef=0.0, iter=178"
+2026-08-25 17:56,D01-hedefli(%22),"v2 oznitelikleri, sifir kurali yok",FEATS(v2),B,1.0192,0.7021,1.724,"cold_hedef=0.22, iter=186"
+2026-08-25 17:56,D01-hedefli(%22)+sifir,v2 + sifir kurali p_zero>=0.95,FEATS(v2),B,1.0163,0.6967,1.724,"cold_hedef=0.22, iter=186"
+2026-08-25 18:01,D02A-v3,tek model + grup sifir-orani oznitelikleri (nb_zero/hep0/shrink),55 oznitelik,B,1.0149,0.6979,1.7188,iter=209
+2026-08-25 18:02,D02B-ayri-cold,A + gorulmedi==1 satirlarda ayri profilsiz model,FEATS_V3 + FEATS_COLD,B,1.0036,0.6979,1.6882,cold_iter=325
+2026-08-25 18:02,D02A+sifir,sifir kurali p_zero>=0.95,-,B,1.0117,0.6918,1.7188,
+2026-08-25 18:02,D02B+sifir,sifir kurali p_zero>=0.95,-,B,1.0003,0.6918,1.6882,
+2026-08-25 18:13,D03-ref-dogrudan,D02B tekrari: dogrudan + ayri cold modeli,FEATS_V3/COLD,B,1.0036,0.6979,1.6882,
+2026-08-25 18:13,D03-hurdle,"(1-p)*mu+, mu+ yalniz y>0 satirlarinda egitildi",FEATS_V3/COLD,B,1.0122,0.7003,1.7078,
+2026-08-25 18:13,D03-harman,w=0.4 hurdle + dogrudan,FEATS_V3/COLD,B,0.9994,0.6881,1.6912,
+2026-08-25 18:16,D04-taban,dogrudan + ayri cold modeli (D02B),FEATS_V3/COLD,B,1.0036,0.6979,1.6882,
+2026-08-25 18:16,D04-H-hurdle,"(1-p)*mu+, mu+ eval yalniz y>0 (duzeltilmis)",FEATS_V3/COLD,B,1.0084,0.6915,1.7104,
+2026-08-25 18:16,D04-S-kucultme,"ogrenilmis p ile kucultme, alpha=1.5",FEATS_V3/COLD,B,0.9864,0.665,1.6892,
+2026-08-25 18:16,D04-S+esik,kucultme alpha=1.5 + sert esik p>=0.7,FEATS_V3/COLD,B,0.9855,0.6632,1.6893,
+2026-08-25 18:16,D04-S+hurdle+esik,"w=0.1 hurdle, alpha=1.5, esik=0.7",FEATS_V3/COLD,B,0.9852,0.6622,1.69,
+2026-08-25 18:24,D06-B-tohum7,"recete dogrulama, en iyi alpha=5",FEATS_V3/COLD,B,0.9818,,,alpha kararliligi kontrolu
+2026-08-25 18:24,D06-B-tohum13,"recete dogrulama, en iyi alpha=2.5",FEATS_V3/COLD,B,1.0281,,,alpha kararliligi kontrolu
+2026-08-25 18:24,D06-B-tohum21,"recete dogrulama, en iyi alpha=5",FEATS_V3/COLD,B,1.0038,,,alpha kararliligi kontrolu
+2026-08-25 18:24,D06-A,"recete dogrulama, en iyi alpha=1",FEATS_V3/COLD,A,1.1757,,,alpha kararliligi kontrolu
+2026-08-25 18:33,T01-komsu-sizintisi,"Yapay cold trafo kendi nb_* grubunda kaliyor, gercek cold kalmiyor -> uyumsuzluk?",tani,B,,,,"ELENDI: ilce x guc grubu medyan 28 trafo, kendi katkisi ~1/28. nb_mean tek basina yapay cold 1.743 / gercek cold 1.786 - fark ihmal edilebilir. LOO gereksiz."
+2026-08-25 18:33,T02-kapsama-deseni,"Hedef penceresindeki kapsama (kac gun, gec baslama, erken bitis) sifirligi tahmin eder mi?",tani,B,,,,"ELENDI: pencere ici kapsama AUC ~0.51 (rastgele). Train GENELINDE erken_bitis AUC 0.697 ama o yalniz GORULEN trafolar icin var, orada zaten p_zero var."
+2026-08-25 18:33,T03-yeni-trafo-rampasi,Test cold trafolarinin %65i 2026-05-11de basliyor; yeni trafolar ilk gunlerde sifir/dusuk mu?,tani,B,,,,ELENDI: ilk 3 gun sifir orani 0.070 vs sonrasi 0.061; seviye kendi platosuna gore -0.12. Testin %4.1i etkileniyor -> kazanc olcum gurultusunun altinda.
+2026-08-25 18:33,T04-id-knn,"tanim ID uzayinda en yakin K trafo (prefix DEGIL - ince gruplama, elenen hipotezin tersi yonu)",tani,B,,,,"ELENDI: cold trafo seviyesi RMSE k=25 1.780 vs nb_mean 1.814 (beraberlik), k=1de 2.695 (cok kotu). ID komsulugu ilce x gucten bilgi katmiyor. Prefix bulgusunu ters yonden dogruluyor. Not: hep-sifir AUC 0.618 - zayif."
+2026-08-25 18:33,D03-hurdle-hatali,"hurdle (1-p)*mu+, mu+ TUM validasyonda erken durduruldu",FEATS_V3,B,1.0122,0.7003,1.7078,HATALI KURGU: mu+ yalniz y>0da egitildi ama sifirlar dahil eval edildi -> 92 iterasyonda kesildi. Duzeltilmisi D04-H.
+2026-08-25 18:33,D04-H-not,hurdle duzeltilmis ama yine de tabandan kotu,FEATS_V3,B,1.0084,0.6915,1.7104,"Teorik olarak dogru form ((1-p)*E[ly|y>0]) ama p KALIBRE DEGIL: p_hat in (0.3,0.5] kovasinda gercek sifir orani 0.90. Sifirlar trafo bazinda kumelendigi icin olasilik fazla temkinli cikiyor. Uslu kucultme bunu telafi ediyor."
+2026-08-25 19:18,D08-AYNI maske (gu.py)-taban,egitim katmani maske cesitliligi,FEATS_V3/COLD,B,1.0036,0.6979,1.6881,"iter={'A': 209, 'C': 266, 'K': 66, 'KC': 35}"
+2026-08-25 19:18,D08-AYNI maske (gu.py),egitim katmani maske cesitliligi + alpha=2.5,FEATS_V3/COLD,B,0.9833,0.6598,1.6881,"iter={'A': 209, 'C': 266, 'K': 66, 'KC': 35}"
+2026-08-25 19:21,D08-FARKLI maske (defter)-taban,egitim katmani maske cesitliligi,FEATS_V3/COLD,B,0.9944,0.6808,1.6881,"iter={'A': 776, 'C': 266, 'K': 72, 'KC': 35}"
+2026-08-25 19:21,D08-FARKLI maske (defter),egitim katmani maske cesitliligi + alpha=2.5,FEATS_V3/COLD,B,0.9694,0.6328,1.6881,"iter={'A': 776, 'C': 266, 'K': 72, 'KC': 35}"
+2026-08-25 21:20,D09-lb-gurultu,Public %30 diliminin skor oynakligi,tani,B,,,,"Ayni model 400 farkli %30 diliminde std 0.0073, %5-95 araligi 0.957-0.981. Hata yogun: en kotu %1 satir toplam hata karesinin %54u; sifir satirlari %57si."
+2026-08-25 21:20,D10-public-private,Public/private siralama uyumu (ayrik %30/%70),tani,B,,,,Tek modelin public-private skor farki std 0.0104 (+-0.018). AMA iki model FARKININ std si yalnizca 0.0001-0.0006 - ayni satirlarda puanlandiklari icin hatalar korele. Yerel fark >0.003 ise uyusmazlik %0; fark 0.0003 ise %18. Siralama sanildigindan kararli.
+2026-08-26 00:06,D11-B0 (mevcut),hedef aylarini kapsayan katman eklemenin etkisi,"katman aylari [7, 8, 9, 10, 11, 12]",B,0.9694,0.6328,1.6881,"taban 0.9944, iter={'A': 776, 'C': 266, 'K': 72, 'KC': 35}"
+2026-08-26 00:09,D11-B1 +Sub-Nis katmani,hedef aylarini kapsayan katman eklemenin etkisi,"katman aylari [2, 3, 4, 7, 8, 9, 10, 11, 12]",B,0.9792,0.6302,1.7171,"taban 0.9923, iter={'A': 204, 'C': 138, 'K': 70, 'KC': 53}"
+2026-08-26 00:11,D11-B2 +Mar-May katmani,hedef aylarini kapsayan katman eklemenin etkisi,"katman aylari [3, 4, 5, 7, 8, 9, 10, 11, 12]",B,0.996,0.6573,1.7252,"taban 1.0074, iter={'A': 213, 'C': 306, 'K': 71, 'KC': 62}"
+2026-08-26 00:13,D11-B3 +Sub-Nis +Nis-Tem,hedef aylarini kapsayan katman eklemenin etkisi,"katman aylari [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]",B,0.9959,0.6567,1.7256,"taban 1.0260, iter={'A': 131, 'C': 125, 'K': 75, 'KC': 47}"
+2026-08-26 00:19,T14-fourier-vekili,sin/cos tabani Nis-May boslugunu ne kadar yanlis dolduruyor? (vekil olcum),tani,B,,,,"BASARISIZ VEKIL: ham Fourier fit Harness B boslugu icin -0.228 ongorurken gercek model sapmasi +0.080 idi - 3 kat abartiyor, isareti bile tutmuyor. Sebep: model seviyeyi sin/cos tan degil p_son60/p_lymean den aliyor. ONEMLI SONUC: eksik-ay riski GORULEN tarafta kucuk (profil seviyeyi tasiyor), COLD tarafta buyuk (profil yok, sinyal sadece sin/cos + grup ortalamalari)."
+2026-08-26 00:19,T15-yeni-parti,Yeni devreye alinan trafolar ilce x guc grubundan sistematik sapiyor mu?,tani,B,,,,ELENDI: yeni trafo grup ortalamasindan ort +0.084 (medyan farki +0.116) ama std 2.1. Train deki 5 buyuk devreye alma partisinin sapmasi -0.435 ile +0.887 arasinda savruluyor - tutarli yon yok. Test cold trafolarinin %66si (1326) 2026-05-11 de tek parti halinde basliyor ama uygulanabilir duzeltme cikmadi.
+2026-08-26 00:20,D13-hepsi DERIN (=v3),gorulen/cold icin ayri katman setleri,FEATS_V3/COLD,B,0.9664,0.6271,1.6881,en iyi alpha=4
+2026-08-26 00:20,D13-hepsi GENIS,gorulen/cold icin ayri katman setleri,FEATS_V3/COLD,B,0.9789,0.6296,1.7171,en iyi alpha=4
+2026-08-26 00:20,"D13-A,K GENIS + C DERIN (v4)",gorulen/cold icin ayri katman setleri,FEATS_V3/COLD,B,0.9677,0.6296,1.6881,en iyi alpha=4
+2026-08-26 00:24,D12-B,"yaz harness, sifir orani 0.0445",FEATS_V3/COLD,B,0.9664,,,"en iyi alpha=4, alpha=0 -> 0.9944"
+2026-08-26 00:25,D12-Y,"yaz harness, sifir orani 0.0249",FEATS_V3/COLD,Y,1.0246,,,"en iyi alpha=0, alpha=0 -> 1.0246"
+2026-08-26 00:26,D12-Z,"yaz harness, sifir orani 0.0267",FEATS_V3/COLD,Z,1.1019,,,"en iyi alpha=2.5, alpha=0 -> 1.1128"
+2026-08-26 00:27,D13-SONUC-ayrik-katman,Gorulen/cold icin ayri katman setleri (ay kapsamasi) - REDDEDILDI,tani,B,0.9677,0.6296,1.6881,"Ay kapsamasi sapmayi +0.08 -> +0.03 indiriyor ama ince gecmisli satirlar A modelini de bozuyor (erken durdurma 776 -> 204 iterasyon). v3 (hepsi derin) 0.9664 ile daha iyi. Fikir dusuruldu. YAN URUN: alpha ayrisimi - sapma duzeltilince optimal alpha 4ten 1.5a duyusuyor, yani alpha>1.5 kilik degistirmis sapma telafisiydi."
+2026-08-26 00:27,D12-SONUC-alpha-secimi,Uc pencerede alpha davranisi -> robust secim,karar,B,,,,"B(sifir %4.45) en iyi alpha=4 | Y(%2.49) en iyi alpha=0, her alpha zararli | Z(%2.67) en iyi alpha=2.5. Sabit alpha nin en kotu-durum kaybi: a=0 0.028, a=1 0.013, a=1.5 0.020, a=2.5 0.035, a=4 0.053. ALPHA=1 hem minimax hem ortalama kaybi minimize ediyor. Test sifir orani tahmini %3.3 (2025 Nis-Tem %5.4 x yillar arasi %60 dusus). v3teki alpha=2.5 -> v4te alpha=1.0."
+2026-08-26 00:28,D16-mask0.22,mask_rate taramasi,FEATS_V3/COLD,B,0.9857,0.6576,1.6977,"en iyi alpha=3, 90s"
+2026-08-26 00:30,D16-mask0.3,mask_rate taramasi,FEATS_V3/COLD,B,0.9756,0.6379,1.6977,"en iyi alpha=6, 127s"
+2026-08-26 00:32,D16-mask0.4,mask_rate taramasi,FEATS_V3/COLD,B,0.9813,0.649,1.6977,"en iyi alpha=6, 89s"
+2026-08-26 00:38,D16-tohum-ort,3 tohum log uzayinda ortalama,FEATS_V3/COLD,B,0.9708,0.6348,1.6892,"mask_rate=0.3, alpha=3"
+2026-08-26 00:45,D17-v4-alpha1.0,v4 final: tohum ort + mask_rate ayarli,FEATS_V3/COLD,B,0.9752,0.6435,1.6892,"mask_rate=0.3, 3 tohum, iter={'A': 309, 'C': 136, 'K': 65, 'KC': 34}"
+2026-08-26 00:45,D17-v4-alpha2.5,v4 final: tohum ort + mask_rate ayarli,FEATS_V3/COLD,B,0.9709,0.6351,1.6892,"mask_rate=0.3, 3 tohum, iter={'A': 309, 'C': 136, 'K': 65, 'KC': 34}"
+2026-08-26 17:03,v4-guvenli,"3 tohum toplulugu, alpha=1.0",B,0.9753,0.6436,1.6893,"mask_rate=0.3, iter={'A': 309, 'C': 136, 'K': 65, 'KC': 34}"
+2026-08-26 17:03,v4-agresif,"3 tohum toplulugu, alpha=2.5",B,0.971,0.6352,1.6893,"mask_rate=0.3, iter={'A': 309, 'C': 136, 'K': 65, 'KC': 34}"
+2026-08-27 02:30,v5-hiperparametre,num_leaves=31 (A ve C icin en iyi),FEATS_V3/COLD,B,,,,ELENDI: tek basina alpha=0 ve tek tohumda +0.0048; toplulukla ve sifir kucultmesiyle birlikte +0.0003 kaldi. Ayni hatayi zaten kapatiyorlarmis.
+2026-08-27 02:30,v5-catboost,CatBoost + LightGBM log uzayinda harman,FEATS_V3/COLD,B,,,,ELENDI: CatBoost tek basina 1.0099 (LGB 0.9821). En iyi harman w=0.2 -> +0.0002. Tasidigi karmasikliga degmez.
+2026-08-27 02:30,v5-kalibrasyon,Gorulen tarafi dogrusal kalibrasyon a*tahmin+b,FEATS_V3/COLD,B,,,,"ELENDI (TRANSFER): kendi penceresinde +0.0054 (durust olculdu, trafolar ikiye bolundu). AMA katsayilar pencereden pencereye tasinmiyor: a = 1.0403 (kis) / 0.9728 (yaz Y) / 1.0860 (yaz Z), b = -0.31 / +0.28 / -0.90. Yaz Yde a<1, yani kisin ogrenilen duzeltmenin TERSI yon. Kisa ozgu bir duzeltme; yaz testine uygulamak riskli. v5 = v4 oldu."
+2026-08-27 18:17,v6-rejim+yas,Harness N (gercek yeni trafolar) uzerinde optimize,TEMEL+YAS,N,1.273,,2.0067,"v4 recetesi N1/N2 ortalamasi 1.3035 -> v6 1.2730. Cold N1 2.1554->2.0892, N2 2.0306->1.9242. Iki bilesen: (1) C ve KC yalniz dogal yeni-trafo satirlarinda egitiliyor (rejim eslestirmesi), (2) yas oznitelikleri k_yas/k_ngun/k_gecbas/k_pay. Cold kaydirmasi -0.20 (iki kesimde de negatif)."
+2026-08-30 19:48,FINAL-12model,12 model toplulugu (6 tohum x 2 mask_rate) + hava + rejim + yas + lambda=1.038,FEATS+HAVA / COLD+HAVA+YAS,LB,,,,"PUBLIC LB 1.06775 (en iyi). Yol: v4 1.07899 -> v6 1.09635 (cold kaydirma, geri alindi) -> v8 1.07720 (hava +0.0018) -> v9b 1.07264 (rejim+yas +0.0046) -> FINAL 1.06775 (12 model toplulugu +0.0049). Toplam kazanc 0.0112. Taban (model yok) 1.37798."
+2026-08-31 14:37,FINAL2-24model,24 model: 2 katman seti x 2 mask_rate x 2 num_leaves x 3 tohum,FEATS+HAVA / COLD+HAVA+YAS,LB,,,,"PUBLIC LB 1.06910 - FINAL (1.06775) den 0.0014 KOTU. Eklenen iki eksen (num_leaves=31 ve alternatif katman seti) LB de hic test edilmemisti ve zarar verdi. Topluluk cesitliligi her eksende iyi degil: tohum+mask_rate cesitliligi kazandiriyor (3->12 model +0.0049), agac karmasikligi ve katman penceresi cesitliligi kaybettiriyor. EN IYI: submission_FINAL.csv 1.06775"

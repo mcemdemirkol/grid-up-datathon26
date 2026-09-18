@@ -1,0 +1,33 @@
+# ============================================================
+# YARISMA VERISI - Gdz & Adm Elektrik'e ait, izinsiz paylasilamaz.
+# Bu dosyalar KESINLIKLE repoya girmemeli.
+# ============================================================
+train.csv
+test.csv
+sample_submission.csv
+
+# Uretilen submission dosyalari (her biri ~28 MB, veriden turetilmis)
+submission*.csv
+
+# Turetilmis / yeniden uretilebilir ara ciktilar (hava_ham.csv HARIC - o kamuya acik)
+cache/
+hava.csv
+*.npz
+*.pkl
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# Isletim sistemi / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Surec arsivi ve kutuphane repoda tutulmuyor (disk'te var)
+surec/
+gu.py
